@@ -1,0 +1,6 @@
+{
+    'extends': '@eleks/eleks',
+    'globals': {
+        'angular': true
+    }
+}

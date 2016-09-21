@@ -1,0 +1,27 @@
+{
+  "name": "pic_flickr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "andrii_kulyk",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.7.9",
+    "browser-sync": "^2.16.0",
+    "eslint": "^2.13.1",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-eslint": "^3.0.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-uglify": "^2.0.0"
+  },
+  "devDependencies": {
+    "@eleks/eslint-config-eleks": "^0.1.1",
+    "del": "^2.2.2",
+    "install": "^0.8.1",
+    "npm": "^3.10.7"
+  }
+}
