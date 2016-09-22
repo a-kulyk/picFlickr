@@ -1,39 +1,22 @@
 (function () {
     angular.module('pic_flickr')
-    .factory('FlickrService', function($http, $q, $resource){
-            var self = this;
-            self.perPage =  150;
-            self.api_key = "8e8b0a8d39a7af07485e7b992084a350";
-            self.base_url= "https://api.flickr.com/services/rest/";
+        .factory('FlickrService', ($http, $q, $resource, myConfig) => {
+            return { search };
 
-            self.search = function(search, page){
-                var deferred = $q.defer();
-
+            function search (searchText, page) {
                 var params = {
-                    api_key: self.api_key,
-                    per_page: self.perPage,
+                    api_key: myConfig.API_KEY,
+                    per_page: myConfig.perPage,
                     format: 'json',
-                    nojsoncallback: 1,
-                    page: (page != null && page > 0) ? page : 1,
-                    method: (search != null && search.length > 0) ? 'flickr.photos.search' : 'flickr.photos.getRecent'
+                    nojsoncallback: myConfig.one,
+                    text: searchText,
+                    sort: 'relevance',
+                    page: page && page > myConfig.zero ? page : myConfig.one,
+                    method: searchText && searchText.length > myConfig.zero ? 'flickr.photos.search' : 'flickr.photos.getRecent'
                 };
 
-                if ((search != null && search.length > 0)) {
-                    params.text = search;
-                }
-
-                $http({method: 'GET', url: self.base_url, params: params}).
-                    success(function(data, status, headers, config) {
-                         deferred.resolve(data);
-                    }).
-                    error(function(data, status, headers, config) {
-                        deferred.reject(status);
-                     });
-
-                return deferred.promise;
-
+                return $http({ method: 'GET', url: myConfig.base_url, params })
+                    .then(res => res.data);
             }
-            return this;
         });
 }());
-

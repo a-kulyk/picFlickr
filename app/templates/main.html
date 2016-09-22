@@ -1,5 +1,18 @@
-<div class="form-group">
-	<label>Search photos:</label>
-	<input class="form-control" type="text" name="photo_search" placeholder="Type in photo name, tag or property ">
-	<button type="submit" class="btn btn-primary btn-lg pull-right">Search</button>
-</div>
+<form ng-submit="main.search()" class="form-inline" name="searchForm" novalidate>
+    <div class="form-group">
+        <label for="search_input">Search </label>
+        <input id="search_input" class="form-control" type="text" ng-model="main.photo_search" name="photo_search" placeholder="Enter name, tag or property" required>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success" ng-disabled="searchForm.$invalid">Search</button>
+    </div>
+    <div ng-show="main.loading"><h2>LOAD</h2></div>
+    <div class="row" ng-hide="main.loading">
+        <div class="thumb" ng-repeat="photo in main.photos">
+            <a ui-sref="#/{{photo.id}}">
+                <img ng-src="http://farm{{photo.farm}}.static.flickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_q.jpg">
+            </a>
+        </div>
+    </div>
+</form>
+    

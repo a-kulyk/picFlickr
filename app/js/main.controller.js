@@ -2,34 +2,24 @@
     angular.module('pic_flickr')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', 'FlickrService'];
+    MainController.$inject = ['$scope', 'FlickrService', '$log'];
 
-    function MainController ($scope, FlickrService) {
+    function MainController ($scope, FlickrService, $log) {
         var vm = this;
+        
+        vm.loading = true;
+        vm.search = search;
 
-        console.log(vm.photo_search);
+        function search () {
+            
+
+            $log.log(vm.photo_search);
+            FlickrService.search(vm.photo_search)
+                .then(res => {
+                    $log.log(res);
+                    vm.photos = res.photos.photo;
+                    vm.loading = false;
+                });
+        }
     }
-
-
 }());
-
-
-
-// app.factory('Flickr', function($resource, $q) {
-//   var photosPublic = $resource('http://crossorigin.me/https://api.flickr.com/services/feeds/photos_public.gne?tags=trees&format=json', 
-//       { format: 'json', jsoncallback: 'JSON_CALLBACK' }, 
-//       { 'load': { 'method': 'JSONP' } });
-//   return {
-//     get: function() {
-//       var q = $q.defer();
-//       photosPublic.load(function(resp) {
-//         q.resolve(resp);
-//         console.log(resp.items);
-//       })
-//       return q.promise;
-//     }
-//   }
-// });
-// app.controller('FlickrCtrl', function($scope, Flickr) {
-// Flickr.get();
-// });
