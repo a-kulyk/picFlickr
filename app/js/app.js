@@ -21,7 +21,7 @@
                 controllerAs: 'main'
             });
 
-        // $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/');
 
         $locationProvider.html5Mode({
             enabled: true,

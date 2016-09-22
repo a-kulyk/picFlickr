@@ -16,7 +16,8 @@
     "gulp-clean": "^0.3.2",
     "gulp-eslint": "^3.0.1",
     "gulp-minify-css": "^1.2.4",
-    "gulp-uglify": "^2.0.0"
+    "gulp-uglify": "^2.0.0",
+    "run-sequence": "^1.2.2"
   },
   "devDependencies": {
     "@eleks/eslint-config-eleks": "^0.1.1",
