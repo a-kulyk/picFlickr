@@ -1,10 +1,10 @@
 (function () {
-    angular.module('pic_flickr', ['ui.router', 'ngAnimate', 'ngResource', 'ui.bootstrap'])
+    angular.module('pic_flickr', ['ui.router', 'ngAnimate', 'ngResource', 'ui.bootstrap', 'ngClipboard'])
         .constant('myConfig', {
             'API_KEY': 'b2d2abbb64d86c5552a676795a58ae5c',
             'secret': '76778ce756ff9293',
             'base_url': 'https://api.flickr.com/services/rest/',
-            'perPage': 60,
+            'perPage': 30,
             'one': 1,
             'zero': 0
         })
@@ -21,7 +21,7 @@
                 controllerAs: 'main'
             });
 
-        $urlRouterProvider.otherwise('/');
+        // $urlRouterProvider.otherwise('home');
 
         $locationProvider.html5Mode({
             enabled: true,

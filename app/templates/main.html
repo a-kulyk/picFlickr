@@ -1,18 +1,27 @@
 <form ng-submit="main.search()" class="form-inline" name="searchForm" novalidate>
     <div class="form-group">
-        <label for="search_input">Search </label>
-        <input id="search_input" class="form-control" type="text" ng-model="main.photo_search" name="photo_search" placeholder="Enter name, tag or property" required>
+        <input id="search_input" class="form-control" type="text" ng-model="main.photo_search" name="photo_search" placeholder="Photos, people" required>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-success" ng-disabled="searchForm.$invalid">Search</button>
     </div>
-    <div ng-show="main.loading"><h2>LOAD</h2></div>
-    <div class="row" ng-hide="main.loading">
-        <div class="thumb" ng-repeat="photo in main.photos">
-            <a ui-sref="#/{{photo.id}}">
-                <img ng-src="http://farm{{photo.farm}}.static.flickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_q.jpg">
-            </a>
-        </div>
-    </div>
 </form>
+<div ng-show="main.loading" class="text-center loading"><img src="./img/loading_spinner.gif" style="height:50px;"></div>
+<div class="row text-center control-gallery" ng-show="main.showGallery">
     
+    <div class="big_photo text-center">
+     <a ng-click="main.previous()" href><span class="glyphicon glyphicon-chevron-left"></span></a>
+    
+        <img ng-click="main.next()" ng-src="{{main.currentPhotoSrc}}">
+    
+    <a ng-click="main.next()" href><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+    <h4>{{main.currentPhoto.title}}
+        <button class="btn btn-default pull-right" ng-click="main.copyLink()">Copy Link</button>
+    </h4>
+</div>
+<div  ng-hide="main.loading" class="thumb-grid">
+    <div class="thumb" ng-repeat="photo in main.photos" ng-click="main.openPhoto(photo.id)">
+            <img ng-src="http://farm{{photo.farm}}.static.flickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_q.jpg">
+    </div>
+</div>

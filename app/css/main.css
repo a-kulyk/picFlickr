@@ -1,7 +1,54 @@
+body {
+/*	margin: 0;
+	padding: 0;*/
+	background-color: #464646;
+}
+#gallery {
+	padding: 0 70px;
+}
 h3 {
 	color: red;
+}
+.loading {
+	margin: 100px;
 }
 .thumb {
 	display: inline-block;
 	margin: 10px;
+	width: 150px;
+	height: 150px;
+	cursor: pointer;
+}
+.control-gallery {
+	margin: 40px 0;
+	background-color: #464646;
+}
+.control-gallery h4 {
+	color: lightgrey;
+}
+.big_photo {
+	position: relative;
+	height: 400px;
+}
+.big_photo img {
+	height: 400px;
+	display: inline-block;
+	max-width: 800px;
+}
+.big_photo a {
+	width: 10%;
+	display: inline-block;
+    height: 400px;
+    position: relative;
+	background: rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+}
+.big_photo a:hover {
+	background: rgba(0, 0, 0, 0.15);
+}
+.big_photo a span {
+	margin-top: 190px
+}
+.thumb-grid {
+	margin-top: 50px;
 }
