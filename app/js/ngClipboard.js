@@ -1,51 +1,34 @@
-angular.module('ngClipboard', [])
+(function () {
+    angular.module('pic_flickr')
 
-    .factory('ngClipboard', function($compile,$rootScope,$document) {
-        return {
-            toClipboard: function(element){
+        .factory('ngClipboard', ngClipboard);
 
-            var copyElement = angular.element('<span id="ngClipboardCopyId">'+element+'</span>');
-            var body = $document.find('body').eq(0);
+    ngClipboard.$inject = ['$compile', '$rootScope', '$document', 'myConfig'];
+
+    function ngClipboard ($compile, $rootScope, $document, myConfig) {
+        return {toClipboard};
+        function toClipboard (element) {
+            var copyElement, body, ngClipboardElement, range;
+
+            copyElement = angular.element('<span id="ngClipboardCopyId">' + element + '</span>');
+            body = $document.find('body').eq(myConfig.zero);
+
             body.append($compile(copyElement)($rootScope));
-            
-            var ngClipboardElement = angular.element(document.getElementById('ngClipboardCopyId'));
-            console.log(ngClipboardElement);
-            var range = document.createRange();
 
-            range.selectNode(ngClipboardElement[0]);
+            ngClipboardElement = angular.element(document.getElementById('ngClipboardCopyId'));
+            range = document.createRange();
+
+            range.selectNode(ngClipboardElement[myConfig.zero]);
 
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(range);
 
-            var successful = document.execCommand('copy');
+            document.execCommand('copy');
 
-            var msg = successful ? 'successful' : 'unsuccessful';
-            console.log('Copying text command was ' + msg);
             window.getSelection().removeAllRanges();
 
             copyElement.remove();
         }
     }
-    })
+}());
 
-    .directive('ngCopyable', function() {
-        return {
-            restrict: 'A',
-            link:link
-        };
-        function link(scope, element, attrs) {
-            element.bind('click',function(){
-
-                var range = document.createRange();
-                range.selectNode(element[0]);
-                window.getSelection().removeAllRanges();
-                window.getSelection().addRange(range);
-                var successful = document.execCommand('copy');
-
-                var msg = successful ? 'successful' : 'unsuccessful';
-                console.log('Copying text command was ' + msg);
-                window.getSelection().removeAllRanges();
-            });
-        }
-
-    });

@@ -1,27 +1,44 @@
-<form ng-submit="main.search()" class="form-inline" name="searchForm" novalidate>
-    <div class="form-group">
-        <input id="search_input" class="form-control" type="text" ng-model="main.photo_search" name="photo_search" placeholder="Photos, people" required>
-    </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-success" ng-disabled="searchForm.$invalid">Search</button>
-    </div>
-</form>
+<div class="row">
+    <form ng-submit="main.search(main.photoSearch)" class="form-inline col-md-4" name="searchForm" novalidate>
+        <div class="form-group">
+            <input id="search_input" class="form-control" type="text" ng-model="main.photoSearch" name="photo_search" placeholder="Photos, people" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="searchForm.$invalid">Search</button>
+        </div>
+    </form>
+    <ul class="pagination col-md-5">
+        <li ng-repeat="page in main.pageNav" ng-class="{active: page.disabled}"><a href="" ng-click="main.search(main.photoSearch, page.number)">{{page.text}}</a></li>
+    </ul>
+    <div class="col-md-3"><p class="pages-of-pages">Page {{main.page}} of {{main.pages}}</p></div>
+</div>
 <div ng-show="main.loading" class="text-center loading"><img src="./img/loading_spinner.gif" style="height:50px;"></div>
-<div class="row text-center control-gallery" ng-show="main.showGallery">
-    
-    <div class="big_photo text-center">
-     <a ng-click="main.previous()" href><span class="glyphicon glyphicon-chevron-left"></span></a>
-    
-        <img ng-click="main.next()" ng-src="{{main.currentPhotoSrc}}">
-    
-    <a ng-click="main.next()" href><span class="glyphicon glyphicon-chevron-right"></span></a>
+<div class="container text-center control-gallery" ng-show="main.showGallery">
+
+    <div id="myCarousel" class="carousel slide">
+        <div class="carousel-inner" role="listbox">
+            <img ng-click="main.next()" ng-src="{{main.currentPhotoSrc}}" title="Next">
+        </div>
     </div>
-    <h4>{{main.currentPhoto.title}}
-        <button class="btn btn-default pull-right" ng-click="main.copyLink()">Copy Link</button>
-    </h4>
+    <a class="left carousel-control" href="" role="button" ng-click="main.previous()">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" role="button" ng-click="main.next()">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+
+    <h4>{{main.currentPhoto.title}}</h4>
+    <p><button class="btn btn-primary btn-sm" ng-click="main.copyLink()">Copy Photo's Link</button><a href="" ng-click="main.close()" class="pull-right">Close</a></p>
+    
 </div>
 <div  ng-hide="main.loading" class="thumb-grid">
-    <div class="thumb" ng-repeat="photo in main.photos" ng-click="main.openPhoto(photo.id)">
+    <div class="thumb" ng-repeat="photo in main.photos" ng-click="main.openPhoto(photo.id)" ng-class="{highlight: photo.highlight}">
             <img ng-src="http://farm{{photo.farm}}.static.flickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_q.jpg">
-    </div>
+    </div><br>
+    <ul class="pagination col-md-5">
+        <li ng-repeat="page in main.pageNav" ng-class="{active: page.disabled}"><a href="" ng-click="main.search(main.photoSearch, page.number)">{{page.text}}</a></li>
+    </ul>
+    <div class="col-md-3"><p class="pages-of-pages">Page {{main.page}} of {{main.pages}}</p></div>
 </div>
