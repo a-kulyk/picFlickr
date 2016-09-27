@@ -4,7 +4,7 @@
             'API_KEY': 'b2d2abbb64d86c5552a676795a58ae5c',
             'secret': '76778ce756ff9293',
             'base_url': 'https://api.flickr.com/services/rest/',
-            'perPage': 28,
+            'perPage': 30,
             'one': 1,
             'three': 3,
             'zero': 0

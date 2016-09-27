@@ -17,6 +17,7 @@
         search();
 
         function search (photoSearch, page) {
+            $log.log(photoSearch);
             if (typeof page !== 'undefined' && vm.page === page) return;
             vm.loading = true;
             vm.showGallery = false;

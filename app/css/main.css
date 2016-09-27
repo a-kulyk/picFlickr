@@ -12,7 +12,7 @@ h3 {
 	justify-content: center;
     align-items: center;
 	flex: 1;
-	margin: 8px;
+	margin: 10px;
 	max-width: 150px;
 	min-width: 150px;
 	height: 150px;
@@ -23,7 +23,7 @@ h3 {
 	box-shadow:0 0 0px 8px #3a6791;
 }
 .control-gallery {
-	margin: 40px 0 100px;
+	margin-bottom: 100px;
 	background-color: #464646;
 	position: relative;
 	height: 400px;
@@ -42,7 +42,8 @@ h3 {
 
 .thumb-grid {
 	display: flex;
-	flex-wrap: wrap;
+	flex-flow: row wrap;
+	justify-content: center;
 }
 .pages-of-pages {
 	color: grey;
