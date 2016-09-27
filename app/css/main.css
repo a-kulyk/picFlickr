@@ -8,9 +8,13 @@ h3 {
 	margin: 100px;
 }
 .thumb {
-	display: inline-block;
-	margin: 10px 20px;
-	width: 150px;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	flex: 1;
+	margin: 8px;
+	max-width: 150px;
+	min-width: 150px;
 	height: 150px;
 	cursor: pointer;
 	transition: all linear 0.2s;
@@ -37,7 +41,8 @@ h3 {
 }
 
 .thumb-grid {
-	/*margin-left: 60px;*/
+	display: flex;
+	flex-wrap: wrap;
 }
 .pages-of-pages {
 	color: grey;

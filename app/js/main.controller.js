@@ -44,7 +44,7 @@
                 }
             });
             vm.showGallery = true;
-            $anchorScroll();
+            
         }
 
         function paginator () {
@@ -63,8 +63,6 @@
 
             if (vm.page < vm.pages)
                 vm.pageNav.push({text: 'Next >>', number: vm.page + myConfig.one});
-            $log.log('page: ', vm.page);
-            $log.log('pages: ', vm.pages);
         }
 
         function next () {
