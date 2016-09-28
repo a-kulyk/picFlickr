@@ -44,7 +44,7 @@
 </div>
 <div ng-hide="main.loading" class="container well thumb-grid">
     <div class="thumb" ng-repeat="photo in main.photos" ng-click="main.openPhoto(photo.id)" ng-class="{highlight: photo.highlight}">
-        <img ng-src="http://farm{{photo.farm}}.static.flickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_q.jpg">
+        <img ng-src="https://farm{{photo.farm}}.static.flickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_q.jpg">
     </div>
     <br>
 </div>

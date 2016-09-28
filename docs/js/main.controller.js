@@ -39,7 +39,7 @@
                     vm.currentIndex = parseInt(index, 10);
                     vm.currentPhoto = value;
                     vm.photos[vm.currentIndex].highlight = true;
-                    vm.currentPhotoSrc = 'http://farm' + vm.currentPhoto.farm + '.static.flickr.com/' + vm.currentPhoto.server + '/'
+                    vm.currentPhotoSrc = 'https://farm' + vm.currentPhoto.farm + '.static.flickr.com/' + vm.currentPhoto.server + '/'
                                     + vm.currentPhoto.id + '_' + vm.currentPhoto.secret + '_z.jpg';
                     return;
                 }
