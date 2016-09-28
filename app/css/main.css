@@ -1,7 +1,7 @@
 body {
 	background-color: #464646;
 }
-h3 {
+.navbar-header .navbar-brand {
 	color: red;
 }
 .loading {
@@ -24,9 +24,9 @@ h3 {
 }
 .control-gallery {
 	margin-bottom: 100px;
-	background-color: #464646;
 	position: relative;
 	height: 400px;
+	background-color: #383838;
 	transition: all linear 0.2s;
 }
 .control-gallery.ng-hide {
@@ -34,6 +34,10 @@ h3 {
 }
 .control-gallery h4 {
 	color: lightgrey;
+}
+.control-gallery > .container {
+	position: relative;
+    height: 400px;
 }
 .control-gallery img {
 	height: 400px;
@@ -44,11 +48,25 @@ h3 {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
+	background-color: #5f5e5e;
+    border-color: grey;
 }
 .pages-of-pages {
 	color: grey;
+	margin: 0 70px;
 }
 .disabled {
   cursor: default;
   opacity: 0.5; 
+}
+.paginator {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-end;
+}
+.paginator .pagination {
+	margin-top: 0;
+}
+.paginator .pagination .active a{
+	background-color: #436a8c;
 }

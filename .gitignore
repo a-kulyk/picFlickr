@@ -1,5 +1,4 @@
 node_modules
-bower_components
-dist
+app/bower_components
 .tmp
 mintty.exe.stackdump

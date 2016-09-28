@@ -17,19 +17,19 @@ gulp.task('lint', function() {
 });
 gulp.task('clean', function() {
 	return del([
-		'dist/*'
+		'docs/*'
 	]);
 });
 gulp.task('minify-css', function() {
   var opts = {comments:true,spare:true};
   return gulp.src(['./app/**/*.css', '!./app/bower_components/**', '!./../node_modules/**'])
     .pipe(minifyCSS(opts))
-    .pipe(gulp.dest('./dist/'))
+    .pipe(gulp.dest('./docs/'))
 });
 gulp.task('scripts', function() {
   return gulp.src('./app/js/*.js')
     .pipe(concat('all.js'))
-    .pipe(gulp.dest('./dist/js/'));
+    .pipe(gulp.dest('./docs/js/'));
 });
 // gulp.task('minify-js', function(cb) {
 // 	var options = {
@@ -38,7 +38,7 @@ gulp.task('scripts', function() {
 // 	pump([
 // 	      gulp.src(['./app/**/*.js', '!./app/bower_components/**']),
 // 	      minifier(options, uglifyjs),
-// 	      gulp.dest('dist')
+// 	      gulp.dest('docs')
 // 	    ],
 // 	    cb
 // 	  );
@@ -47,19 +47,19 @@ gulp.task('scripts', function() {
 //   //   .pipe(UglifyJS.minify().on('error', function(e){
 //   //       console.log(e);
 //   //    }))
-//   //   .pipe(gulp.dest('./dist/'))
+//   //   .pipe(gulp.dest('./docs/'))
 // });
 gulp.task('copy-bower-components', function () {
   return gulp.src('./app/bower_components/**')
-    .pipe(gulp.dest('./dist/bower_components/'));
+    .pipe(gulp.dest('./docs/bower_components/'));
 });
 gulp.task('copy-html-files', function () {
   return gulp.src('./app/**/*.html')
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('./docs/'));
 });
 gulp.task('copy-images', function () {
   return gulp.src('./app/img/*')
-    .pipe(gulp.dest('./dist/img/'));
+    .pipe(gulp.dest('./docs/img/'));
 });
 gulp.task('serve', function () {
 	bs.init({
@@ -69,9 +69,9 @@ gulp.task('serve', function () {
     gulp.watch("app/css/*.css").on('change', bs.reload);
     gulp.watch("app/js/*.js").on('change', bs.reload);
 });
-gulp.task('browser-sync-dist', function(callback) {
+gulp.task('browser-sync-docs', function(callback) {
     bs.init({
-    	server: './dist'
+    	server: './docs'
     });
     callback();
 });
@@ -83,8 +83,8 @@ gulp.task('default',
 gulp.task('build', function(callback) {
   runSequence(
     'clean',
-    ['lint', 'copy-bower-components', 'minify-css', 'copy-html-files', 'copy-images', 'scripts'],
-    'browser-sync-dist',
+    ['copy-bower-components', 'minify-css', 'copy-html-files', 'copy-images', 'scripts'],
+    'browser-sync-docs',
     callback
   );
 })
