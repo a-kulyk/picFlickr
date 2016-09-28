@@ -1,5 +1,5 @@
 (function () {
-    angular.module('pic_flickr', ['ui.router', 'ngAnimate', 'ngResource', 'ui.bootstrap'])
+    angular.module('picFickr', ['ui.router', 'ngAnimate', 'ngResource', 'ui.bootstrap'])
         .constant('myConfig', {
             'API_KEY': 'b2d2abbb64d86c5552a676795a58ae5c',
             'secret': '76778ce756ff9293',
