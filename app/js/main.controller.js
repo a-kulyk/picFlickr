@@ -45,7 +45,6 @@
                 }
             });
             vm.showGallery = true;
-            
         }
 
         function paginator () {
