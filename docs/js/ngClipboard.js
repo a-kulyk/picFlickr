@@ -1,5 +1,5 @@
 (function () {
-    angular.module('picFlickr')
+    angular.module('pic_flickr')
 
         .factory('ngClipboard', ngClipboard);
 

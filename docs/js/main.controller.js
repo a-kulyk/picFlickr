@@ -1,5 +1,5 @@
 (function () {
-    angular.module('picFlickr')
+    angular.module('pic_flickr')
         .controller('MainController', MainController);
 
     MainController.$inject = ['$scope', '$location', '$anchorScroll', '$q', 'FlickrService', '$log', 'ngClipboard', 'myConfig'];
