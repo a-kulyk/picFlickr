@@ -30,11 +30,8 @@
 
         // $urlRouterProvider.otherwise('home');
 
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
-        $locationProvider.hashPrefix('!');
+        $locationProvider.html5Mode(true);
+        // $locationProvider.hashPrefix('!');
     }
 }());
 
