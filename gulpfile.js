@@ -28,7 +28,7 @@ gulp.task('minify-css', function() {
 });
 gulp.task('scripts', function() {
   return gulp.src('./app/js/*.js')
-    .pipe(concat('all.js'))
+    //.pipe(concat('all.js'))
     .pipe(gulp.dest('./docs/js/'));
 });
 // gulp.task('minify-js', function(cb) {
