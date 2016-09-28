@@ -1,5 +1,5 @@
 (function () {
-    angular.module('pic_flickr')
+    angular.module('picFlickr')
         .factory('FlickrService', ($http, $q, $resource, myConfig) => {
             return { search };
 

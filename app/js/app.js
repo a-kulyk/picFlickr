@@ -1,5 +1,5 @@
 (function () {
-    angular.module('pic_flickr', ['ui.router', 'ngAnimate', 'ngResource', 'ui.bootstrap'])
+    angular.module('picFlickr', ['ui.router', 'ngAnimate', 'ngResource', 'ui.bootstrap'])
         .constant('myConfig', {
             'API_KEY': 'b2d2abbb64d86c5552a676795a58ae5c',
             'secret': '76778ce756ff9293',
@@ -9,7 +9,8 @@
             'three': 3,
             'zero': 0
         })
-        .config(routerConfig);
+        .config(routerConfig)
+        .run(runblock);
 
     routerConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
@@ -17,12 +18,6 @@
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: './templates/main.html',
-                controller: 'MainController',
-                controllerAs: 'main'
-            })
-            .state('home.photo', {
-                url: '/photo/:id',
                 templateUrl: 'templates/main.html',
                 controller: 'MainController',
                 controllerAs: 'main'
@@ -35,5 +30,9 @@
             requireBase: false
         });
         $locationProvider.hashPrefix('!');
+    }
+
+    function runblock ($log) {
+        $log.log('app running');
     }
 }());
