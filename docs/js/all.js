@@ -32,9 +32,9 @@
 
         $locationProvider.html5Mode({
             enabled: true,
-            requireBase: false
+            requireBase: true
         });
-        // $locationProvider.hashPrefix('!');
+        $locationProvider.hashPrefix('!');
     }
 }());
 
