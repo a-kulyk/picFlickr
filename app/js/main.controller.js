@@ -2,9 +2,9 @@
     angular.module('picFlickr')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', '$location', '$anchorScroll', '$q', 'FlickrService', '$log', 'ngClipboard', 'myConfig'];
+    MainController.$inject = ['$scope', '$location', '$anchorScroll', '$q', 'FlickrService', 'GoogleService', '$log', 'ngClipboard', 'myConfig'];
 
-    function MainController ($scope, $location, $anchorScroll, $q, FlickrService, $log, ngClipboard, myConfig) {
+    function MainController ($scope, $location, $anchorScroll, $q, FlickrService, GoogleService, $log, ngClipboard, myConfig) {
         var vm = this;
 
         vm.search = search;
@@ -14,7 +14,19 @@
         vm.previous = previous;
         vm.copyLink = copyLink;
         vm.close = close;
+
+        vm.googleSearch = googleSearch;
         search();
+
+        function googleSearch (photoSearch) {
+            return GoogleService.search(photoSearch)
+                .then(res => {
+                    $log.log(res);
+                    vm.googlePhotos = res.items;
+                    vm.googleSearching = true;
+                    vm.flickrSearching = false;
+                });
+        }
 
         function search (photoSearch, page) {
             $log.log(photoSearch);
@@ -29,6 +41,8 @@
                     vm.pages = res.photos.pages;
                     paginator();
                     vm.loading = false;
+                    vm.flickrSearching = true;
+                    vm.googleSearching = false;
                 });
         }
 
