@@ -1,14 +1,31 @@
+html {
+    height: 100%;
+}
 body {
 	background-color: #464646;
+	display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.main {
+	flex: 1 0 auto;
+}
+.navbar.navbar-inverse {
+	box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.5);
 }
 .content {
 	margin-top: 70px;
 }
-.navbar.navbar-inverse{
-	box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.5);
-}
 .navbar-header .navbar-brand {
 	color: red;
+}
+footer {
+   flex: 0 0 auto;
+   background-color: #3a3636;
+   padding: 20px;
+}
+footer p {
+	color: grey;
 }
 .loading {
 	margin: 100px;
@@ -27,8 +44,9 @@ body {
 	transition: all linear 0.2s;
 }
 .thumb img {
-	width: auto;
-    height: 100%;x;
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .thumb.highlight {
 	box-shadow:0 0 0px 8px #3a6791;
@@ -37,7 +55,7 @@ body {
 	margin-bottom: 100px;
 	position: relative;
 	height: 400px;
-	background-color: #383838;
+	background-color: #1f1f1f;
 	transition: all linear 0.2s;
 }
 .control-gallery.ng-hide {
@@ -80,4 +98,7 @@ body {
 }
 .paginator .pagination .active a{
 	background-color: #436a8c;
+}
+.paginator .go-top {
+	flex: 1;
 }

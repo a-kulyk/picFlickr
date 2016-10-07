@@ -9,6 +9,7 @@
             'one': 1,
             'three': 3,
             'ten': 10,
+            'perPage': 30,
             'google_API_KEY': 'AIzaSyA45B20DzHZiNV4wHuIzyq_1FLNYhZo48E',
             'search_engine_id': '007906631053879618604:mgbelpcc874'
         })
@@ -30,8 +31,6 @@
                 controller: 'MainController',
                 controllerAs: 'main'
             });
-
-        // $urlRouterProvider.otherwise('home');
 
         $locationProvider.html5Mode({
             enabled: true,
