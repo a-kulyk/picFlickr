@@ -13,7 +13,7 @@
                     q: searchText,
                     key: myConfig.google_API_KEY,
                     cx: myConfig.search_engine_id,
-                    imgSize: 'medium',
+                    imgSize: 'large',
                     fileType: 'jpeg',
                     safe: 'medium',
                     searchType: 'image',
