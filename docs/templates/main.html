@@ -1,22 +1,12 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">pic_Flickr!</a>
-            </div>
-            <form class="navbar-form navbar-left" ng-submit="main.search(main.photoSearch)" role="search" name="searchForm" novalidate>
-                <div class="form-group">
-                    <input id="search_input" class="form-control" type="text" ng-model="main.photoSearch" name="photo_search" placeholder="Photos, people" required>
-                </div>
-                <button type="submit" class="btn btn-success" ng-disabled="searchForm.$invalid">Search</button>
-            </form>
-        </div>
-    </div>
-</nav>
+<navbar my-search="main.search(searchText)" my-google-search="main.googleSearch(searchText)" />
 <div class="content">
     <div ng-hide="main.loading" class="container paginator">
-        <ul class="pagination">
+        <ul class="pagination" ng-if="main.flickrSearching">
             <li ng-repeat="page in main.pageNav" ng-class="{active: page.disabled}"><a href="" ng-click="main.search(main.photoSearch, page.number)">{{page.text}}</a></li>
+        </ul>
+
+        <ul class="pagination" ng-if="main.googleSearching">
+            <li ng-repeat="page in main.pageNav" ng-class="{active: page.disabled}"><a href="" ng-click="main.googleSearch(main.photoSearch, page.number)">{{page.text}}</a></li>
         </ul>
         <p class="pages-of-pages">Page {{main.page}} of {{main.pages}}</p>
     </div>
@@ -27,7 +17,7 @@
         <div class="container">
             <div id="myCarousel" class="carousel slide">
                 <div class="carousel-inner" role="listbox">
-                    <img ng-src="{{main.currentPhotoSrc}}" ng-click="main.next()" title="Next">
+                    <img ng-src="{{main.currentPhotoSrc}}" ng-click="main.next()" title="Next" ng-cloak>
                 </div>
             </div>
             <a class="left carousel-control" href="" role="button" ng-click="main.previous()" title="Previous">
@@ -40,18 +30,27 @@
             </a>
             <h4>{{main.currentPhoto.title}}</h4>
             <p>
-                <button class="btn btn-primary btn-sm" ng-click="main.copyLink()">Copy Photo's Link</button><a href="" ng-click="main.close()" class="pull-right">Close</a></p>
+                <button class="btn btn-primary btn-sm" ng-click="main.copyLink()">Copy Photo's Link</button><a href="" ng-click="main.close()" class="pull-right">Close</a>
+            </p>
         </div>
     </div>
     <div ng-hide="main.loading" class="container well thumb-grid">
-        <div class="thumb" ng-repeat="photo in main.photos" ng-click="main.openPhoto(photo.id)" ng-class="{highlight: photo.highlight}">
+        <div class="thumb" ng-show="main.flickrSearching" ng-repeat="photo in main.photos" ng-click="main.openPhoto($index)" ng-class="{highlight: $index === main.currentIndex}">
             <img ng-src="https://farm{{photo.farm}}.static.flickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_q.jpg">
         </div>
-        <br>
+        <div class="thumb" ng-show="main.googleSearching" ng-repeat="photo in main.googlePhotos" ng-click="main.openGooglePhoto($index)" ng-class="{highlight: $index === main.currentIndex}">
+            <img ng-src="{{photo.link}}">
+        </div>
     </div>
     <div ng-hide="main.loading" class="container paginator">
-        <ul class="pagination">
+        <p class="go-top">
+            <a href="" ng-click="main.goTop()">Back to top</a>
+        </p>
+        <ul class="pagination" ng-if="main.flickrSearching">
             <li ng-repeat="page in main.pageNav" ng-class="{active: page.disabled}"><a href="" ng-click="main.search(main.photoSearch, page.number)">{{page.text}}</a></li>
+        </ul>
+        <ul class="pagination" ng-if="main.googleSearching">
+            <li ng-repeat="page in main.pageNav" ng-class="{active: page.disabled}"><a href="" ng-click="main.googleSearch(main.photoSearch, page.number)">{{page.text}}</a></li>
         </ul>
         <p class="pages-of-pages">Page {{main.page}} of {{main.pages}}</p>
     </div>
