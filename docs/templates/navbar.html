@@ -1,0 +1,16 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">pic_Flickr!</a>
+            </div>
+            <form class="navbar-form navbar-left" ng-submit="search({searchText: searchText})" role="search" name="searchForm" novalidate>
+                <div class="form-group">
+                    <input id="search_input" class="form-control" type="text" ng-model="searchText" name="photo_search" placeholder="Search photos" required>
+                </div>
+                <button type="submit" class="btn btn-success" ng-disabled="searchForm.$invalid">Flickr</button>
+                <button type="button" class="btn btn-success" ng-click="googleSearch({searchText: searchText})" ng-disabled="searchForm.$invalid">Google</button>
+            </form>
+        </div>
+    </div>
+</nav>
